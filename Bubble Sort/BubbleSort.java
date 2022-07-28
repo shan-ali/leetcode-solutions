@@ -1,6 +1,6 @@
-public class SelectionSort {
+public class BubbleSort {
 
-    public static int[] selectionSort(int[] arr) {
+    public static int[] bubbleSort(int[] arr) {
         boolean isSorted = false;
         while (!isSorted) {
             boolean swap = false;
@@ -24,7 +24,7 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         int[] arr = { 5, 1, 3, 2, 7, 4, 6, 10, 100, 60, 0, 101, 500 };
-        int[] sorted = selectionSort(arr);
+        int[] sorted = bubbleSort(arr);
         for (int a : sorted) {
             System.out.print(a + ", ");
         }
