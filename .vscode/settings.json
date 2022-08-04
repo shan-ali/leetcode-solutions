@@ -1,9 +1,5 @@
 {
     "java.project.sourcePaths": [
-        "Permute A String",
-        "Merge Sort",
-        "46. Permutations",
-        "2192. All Ancestors of a Node in a Directed Acyclic Graph",
-        "35. Search Insert Position"
+        "Permute A String"
     ]
 }
