@@ -1,29 +1,45 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
-    public static List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> answer = new ArrayList();
-        recurse();
-        return answer;
 
-    }
+    List<List<Integer>> allPerm = new ArrayList<>();
 
-    public static void recurse(int[] nums, int index, List<Integer> current, List<List<Integer>> answer) {
-        if (index == nums.length) {
-            answer.add(current);
-        } else {
-            for (int i = 0; i < current.size(); i++) {
-                List<Integer> temp = new ArrayList();
-                temp.add(nums[i]);
-            }
+    public List<List<Integer>> permute(int[] nums) {
+
+        List<Integer> numsList = new ArrayList<>();
+        List<Integer> emptyList = new ArrayList<>();
+
+        for (int n : nums) {
+            numsList.add(n);
         }
+
+        recurse(numsList, emptyList);
+
+        return allPerm;
     }
 
-    public static void main(String[] args) {
-        int[] nums = new int[3];
-        nums[0] = 1;
-        nums[1] = 2;
-        nums[3] = 3;
-        permute(nums);
+    public void recurse(List<Integer> decisions, List<Integer> permutation) {
+
+        if (decisions.size() == 0) {
+            // deep copy
+            allPerm.add(new ArrayList<Integer>(permutation));
+        }
+
+        for (int i = 0; i < decisions.size(); i++) {
+            // find all remaining decisions excluding i
+            List<Integer> left = decisions.subList(0, i);
+            List<Integer> right = decisions.subList(i + 1, decisions.size());
+            List<Integer> remaining = new ArrayList();
+            remaining.addAll(left);
+            remaining.addAll(right);
+
+            permutation.add(decisions.get(i));
+
+            recurse(remaining, permutation);
+
+            // need to remove what we just added
+            permutation.remove(decisions.get(i));
+        }
     }
 }
